@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZEN GENE — 产品说明书</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --blue:    #4f84c4;
+    --blue-lt: #79b8ff;
+    --blue-dk: #162240;
+    --bg:      #0d1117;
+    --bg2:     #13171d;
+    --bg3:     #161b22;
+    --bg4:     #21262d;
+    --border:  #1e2636;
+    --text:    #dde4ee;
+    --muted:   #7d8590;
+    --teal:    #56cfe1;
+    --green:   #1a7f37;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", "Segoe UI", "Source Han Sans CN", "Microsoft YaHei UI", sans-serif;
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  /* ── Hero ─────────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(160deg, #0d1117 0%, #111827 50%, #0e1c2e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 40px 70px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79,132,196,.18) 0%, transparent 70%);
+  }
+  .hero-brand {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .hero-title {
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #fff;
+    position: relative;
+    margin-bottom: 6px;
+  }
+  .hero-title span { color: var(--blue-lt); }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--muted);
+    margin-top: 14px;
+    position: relative;
+  }
+  .hero-tag {
+    display: inline-block;
+    margin-top: 28px;
+    padding: 8px 20px;
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    position: relative;
+  }
+
+  /* ── Layout ───────────────────────────────────────── */
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+
+  section { padding: 64px 0 0; }
+  section:last-child { padding-bottom: 80px; }
+
+  /* ── Section header ───────────────────────────────── */
+  .sec-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 10px;
+  }
+  .sec-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .sec-desc {
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 560px;
+  }
+
+  /* ── Cards grid ───────────────────────────────────── */
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  @media (max-width: 640px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+  }
+
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: #2a3a52; }
+  .card-icon {
+    font-size: 22px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── Feature highlight ────────────────────────────── */
+  .highlight {
+    background: var(--blue-dk);
+    border: 1px solid #1e3a5f;
+    border-radius: 14px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+  .highlight-num {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    background: var(--blue);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: #fff;
+    margin-top: 2px;
+  }
+  .highlight-body h3 {
+    font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 6px;
+  }
+  .highlight-body p { font-size: 13px; color: #8eadcc; line-height: 1.65; }
+
+  /* ── Steps ────────────────────────────────────────── */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-dot {
+    flex-shrink: 0;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: var(--bg4);
+    border: 2px solid var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: var(--blue);
+    margin-top: 2px;
+  }
+  .step-body h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .step-body p { font-size: 13px; color: var(--muted); }
+
+  /* ── Kbd ──────────────────────────────────────────── */
+  kbd {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--bg4);
+    border: 1px solid #30363d;
+    border-bottom-width: 2px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: "Consolas", monospace;
+    color: var(--blue-lt);
+    white-space: nowrap;
+  }
+
+  /* ── Badge ────────────────────────────────────────── */
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .5px;
+  }
+  .badge-blue { background: #1a3a5c; color: var(--blue-lt); }
+  .badge-teal { background: #0e2a30; color: var(--teal); }
+  .badge-green { background: #0f2a1a; color: #3fb950; }
+
+  /* ── Table ────────────────────────────────────────── */
+  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .tbl th {
+    text-align: left; padding: 10px 14px;
+    background: var(--bg3); color: var(--blue);
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tbl th:first-child { border-radius: 10px 0 0 0; }
+  .tbl th:last-child  { border-radius: 0 10px 0 0; }
+  .tbl td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .tbl tr:last-child td { border-bottom: none; }
+  .tbl tr:hover td { background: rgba(79,132,196,.05); }
+
+  /* ── Tip box ──────────────────────────────────────── */
+  .tip {
+    background: #0e1c2e;
+    border-left: 3px solid var(--blue);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #8eadcc;
+    margin-top: 20px;
+  }
+  .tip strong { color: var(--blue-lt); }
+
+  /* ── Divider ──────────────────────────────────────── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 56px 0 0;
+  }
+
+  /* ── Footer ───────────────────────────────────────── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 36px 40px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .footer .logo { font-size: 16px; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ── Hero ──────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-brand">✦ Product Manual</div>
+  <h1 class="hero-title">ZEN <span>GENE</span></h1>
+  <p class="hero-sub">Windows 智能写作助手 · AI 翻译与润色</p>
+  <div class="hero-tag">v1.7.0 &nbsp;·&nbsp; Windows 10 / 11 &nbsp;·&nbsp; 免安装</div>
+</div>
+
+<div class="wrap">
+
+<!-- ── 产品概述 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">Overview</div>
+  <h2 class="sec-title">什么是 ZEN GENE？</h2>
+  <p class="sec-desc">ZEN GENE 是一款运行在 Windows 后台的 AI 写作助手。无论你在哪个应用里打字，一个快捷键即可让 AI 帮你翻译或润色当前输入框中的文字，结果直接替换原文，全程无需切换窗口。</p>
+
+  <div class="grid grid-3">
+    <div class="card">
+      <span class="card-icon">⚡</span>
+      <div class="card-title">全局触发</div>
+      <div class="card-desc">在任意输入框按下热键或输入后缀，即刻启动 AI 处理。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌐</span>
+      <div class="card-title">双向语言</div>
+      <div class="card-desc">自动识别中英文，翻译或润色，无需手动切换模式。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">✦</span>
+      <div class="card-title">场景感知</div>
+      <div class="card-desc">根据当前窗口自动选择日常、随意或商务风格。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">📋</span>
+      <div class="card-title">原地替换</div>
+      <div class="card-desc">确认后直接替换输入框内容，剪贴板自动还原。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">🖥</span>
+      <div class="card-title">免安装</div>
+      <div class="card-desc">单个 exe 文件，复制即用，无需管理员权限安装。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">🔒</span>
+      <div class="card-title">本地配置</div>
+      <div class="card-desc">所有设置保存在本地，API Key 仅存于你的电脑。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 触发方式 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">Trigger</div>
+  <h2 class="sec-title">两种触发方式</h2>
+  <p class="sec-desc">根据你的使用习惯选择，两种方式可以同时启用。</p>
+
+  <div class="highlight">
+    <div class="highlight-num">1</div>
+    <div class="highlight-body">
+      <h3>热键触发 &nbsp;<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd></h3>
+      <p>在任意输入框内按下热键，ZEN GENE 自动读取当前输入框的全部内容（或已选中的部分），发送给 AI 处理。热键组合可在设置中自定义。</p>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <div class="highlight-num">2</div>
+    <div class="highlight-body">
+      <h3>后缀触发 &nbsp;<kbd>·· </kbd>（默认，可自定义）</h3>
+      <p>在文字末尾连续输入两个触发字符（如 <kbd>··</kbd>），自动检测并启动处理，后缀字符会从最终结果中自动删除。适合右手持鼠标时的左手操作。后缀字符可在设置中修改为任意两字符组合。</p>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>提示：</strong>如果你只选中了部分文字再触发，AI 只会处理选中的内容，其余文字保持不变。
+  </div>
+</section>
+
+<!-- ── 弹窗流程 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">Workflow</div>
+  <h2 class="sec-title">标准弹窗流程</h2>
+  <p class="sec-desc">触发后弹出翻译窗口，AI 实时流式输出结果，由你决定是否采用。</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <h4>触发 → 弹窗出现</h4>
+        <p>弹窗在光标附近出现，顶部显示原文，底部开始流式输出 AI 结果，动态指示符 <strong>·&thinsp;··&thinsp;···</strong> 表示正在生成。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <h4>查看结果 → 切换场景（可选）</h4>
+        <p>弹窗顶部有 <strong>日常 / 随意 / 商务</strong> 三个场景按钮，切换后 AI 立即以新风格重新生成。右下角 <kbd>↺</kbd> 可重试当前场景。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">3</div>
+      <div class="step-body">
+        <h4>确认 → 文字替换</h4>
+        <p>按 <kbd>Enter</kbd> 或点击 <strong>确认</strong> 按钮，AI 结果直接替换回原输入框；按 <kbd>Esc</kbd> 或点击 <strong>取消</strong> 放弃，剪贴板自动还原。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 场景模式 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">Scenes</div>
+  <h2 class="sec-title">三种场景风格</h2>
+  <p class="sec-desc">ZEN GENE 会根据当前应用自动选择场景，也可手动切换。</p>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>场景</th>
+        <th>适用情境</th>
+        <th>风格特点</th>
+        <th>自动触发应用</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-blue">日常</span></td>
+        <td>口语对话、一般聊天</td>
+        <td>自然流畅，保留个人风格</td>
+        <td>默认场景</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-teal">随意</span></td>
+        <td>社交媒体、朋友聊天</td>
+        <td>轻松随意，语气活泼</td>
+        <td>WhatsApp</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-green">商务</span></td>
+        <td>邮件、正式沟通</td>
+        <td>专业严谨，措辞得体</td>
+        <td>Outlook、Mail</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="tip">
+    <strong>窗口场景映射：</strong>在设置中可自定义哪些窗口关键词自动对应哪个场景，例如将 "Teams" 映射到商务场景。
+  </div>
+</section>
+
+<!-- ── AI 模式 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">AI Mode</div>
+  <h2 class="sec-title">智能语言识别</h2>
+  <p class="sec-desc">ZEN GENE 自动判断输入内容是需要翻译还是润色，无需手动选择模式。</p>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">🔄 翻译模式</div>
+      <div class="card-desc" style="margin-top:8px">
+        当输入内容为中文时，翻译为英文；<br>
+        当输入内容为英文时，翻译为中文。<br><br>
+        <span class="badge badge-blue">自动检测</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">✨ 润色模式</div>
+      <div class="card-desc" style="margin-top:8px">
+        当输入内容为中英混写，或已是目标语言时，AI 进行改写和优化，使表达更自然地道。<br><br>
+        <span class="badge badge-teal">自动检测</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 固定面板 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">Companion Panel</div>
+  <h2 class="sec-title">固定面板模式</h2>
+  <p class="sec-desc">除弹窗外，ZEN GENE 还提供一个常驻屏幕边缘的固定翻译面板。</p>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <span class="card-icon">📌</span>
+      <div class="card-title">常驻显示</div>
+      <div class="card-desc">面板固定在屏幕右侧，不遮挡工作区，触发后自动填入结果。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">🖱</span>
+      <div class="card-title">点击选用</div>
+      <div class="card-desc">生成多个版本时，直接点击你满意的译文，即可替换回原输入框。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">📐</span>
+      <div class="card-title">拖拽定位</div>
+      <div class="card-desc">面板可自由拖拽到屏幕任意位置，位置自动保存，重启后复原。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">➖</span>
+      <div class="card-title">一键折叠</div>
+      <div class="card-desc">点击面板右上角 − 可折叠收起，折叠状态同样自动保存。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 高级功能 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">Advanced</div>
+  <h2 class="sec-title">高级功能</h2>
+  <p class="sec-desc">在设置中开启以下选项，获得更多控制和灵活性。</p>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-title">🔢 双版本生成</div>
+      <div class="card-desc" style="margin-top:8px">同时生成两个不同风格的译文版本，对比选用，适合需要多个备选时。</div>
+    </div>
+    <div class="card">
+      <div class="card-title">💬 解释修改</div>
+      <div class="card-desc" style="margin-top:8px">AI 在结果下方附上一句简短说明，解释做了哪些调整及原因。</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌍 英文风格</div>
+      <div class="card-desc" style="margin-top:8px">可选美式、英式或新加坡英式，影响用词习惯和拼写规范。</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🤖 模型选择</div>
+      <div class="card-desc" style="margin-top:8px"><strong>Haiku</strong>：速度快，日常使用首选。<br><strong>Sonnet</strong>：精度更高，适合重要文件。</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 自定义提示词</div>
+      <div class="card-desc" style="margin-top:8px">可为每个场景（日常 / 随意 / 商务）自定义 AI 提示词，精确控制输出风格。</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📖 个人风格指南</div>
+      <div class="card-desc" style="margin-top:8px">填写个人偏好词汇和风格要求，AI 会在每次处理时将其纳入参考。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 快捷键参考 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">Shortcuts</div>
+  <h2 class="sec-title">快捷键一览</h2>
+
+  <table class="tbl">
+    <thead>
+      <tr><th>操作</th><th>快捷键</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>触发翻译 / 润色</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd>（可自定义）</td></tr>
+      <tr><td>后缀触发</td><td>在文字末尾输入 <kbd>··</kbd>（可自定义）</td></tr>
+      <tr><td>确认并替换</td><td><kbd>Enter</kbd></td></tr>
+      <tr><td>取消 / 关闭弹窗</td><td><kbd>Esc</kbd></td></tr>
+      <tr><td>重新生成</td><td>点击弹窗右下角 <kbd>↺</kbd></td></tr>
+      <tr><td>只处理选中部分</td><td>先选中文字，再触发</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ── 快速上手 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">Getting Started</div>
+  <h2 class="sec-title">快速上手</h2>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-dot">1</div>
+      <div class="step-body">
+        <h4>运行 ZenGene.exe</h4>
+        <p>双击 exe 文件，程序自动运行到系统托盘（任务栏右下角出现圆弧图标）。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">2</div>
+      <div class="step-body">
+        <h4>填写 API Key</h4>
+        <p>首次运行自动弹出设置窗口。前往 <strong>console.anthropic.com</strong> 获取 API Key，填入后保存即可。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">3</div>
+      <div class="step-body">
+        <h4>在任意输入框测试</h4>
+        <p>打开记事本或任意聊天工具，输入一段文字，按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd>，观察弹窗出现并开始输出结果。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-dot">4</div>
+      <div class="step-body">
+        <h4>按 Enter 替换</h4>
+        <p>对结果满意后按 <kbd>Enter</kbd>，文字自动替换回输入框，完成。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 系统要求 ──────────────────────────────────────────── -->
+<section>
+  <div class="sec-label">System</div>
+  <h2 class="sec-title">系统要求</h2>
+
+  <table class="tbl">
+    <thead>
+      <tr><th>项目</th><th>要求</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>操作系统</td><td>Windows 10 / 11（64 位）</td></tr>
+      <tr><td>网络</td><td>需要访问 Anthropic API（api.anthropic.com）</td></tr>
+      <tr><td>API Key</td><td>Anthropic Claude API Key（在 console.anthropic.com 申请）</td></tr>
+      <tr><td>安装</td><td>免安装，单文件或文件夹版本均可直接运行</td></tr>
+      <tr><td>管理员权限</td><td>不需要</td></tr>
+      <tr><td>配置文件位置</td><td>%APPDATA%\TranslatorApp\config.json</td></tr>
+    </tbody>
+  </table>
+
+  <div class="tip">
+    <strong>迁移到新电脑：</strong>只需复制 <strong>ZenGene.exe</strong>（或整个 ZenGene-portable 文件夹），首次运行重新填写 API Key 即可。如需迁移设置，一并复制 <code>%APPDATA%\TranslatorApp\config.json</code>。
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- ── Footer ──────────────────────────────────────────────── -->
+<div class="footer">
+  <div class="logo">✦ ZEN GENE</div>
+  <div>Windows 智能写作助手 &nbsp;·&nbsp; Powered by Claude AI &nbsp;·&nbsp; v1.7.0</div>
+</div>
+
+</body>
+</html>
