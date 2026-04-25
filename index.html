@@ -309,7 +309,7 @@
   <div class="hero-brand">✦ Product Manual</div>
   <h1 class="hero-title">ZEN GENE <span>Translator</span></h1>
   <p class="hero-sub">Windows 智能写作助手 · AI 翻译与润色</p>
-  <div class="hero-tag">v1.8.0 &nbsp;·&nbsp; Windows 10 / 11 &nbsp;·&nbsp; 免安装</div>
+  <div class="hero-tag">v1.8.8 &nbsp;·&nbsp; Windows 10 / 11 &nbsp;·&nbsp; 免安装</div>
 </div>
 
 <div class="wrap">
@@ -348,8 +348,8 @@
     </div>
     <div class="card">
       <span class="card-icon">🔒</span>
-      <div class="card-title">本地配置</div>
-      <div class="card-desc">所有设置保存在本地，API Key 仅存于你的电脑。</div>
+      <div class="card-title">本地加密</div>
+      <div class="card-desc">所有设置仅存本地，API Key 与翻译历史经 Windows DPAPI 加密，绑定当前账户。</div>
     </div>
   </div>
 </section>
@@ -529,28 +529,28 @@
 <section>
   <div class="sec-label">Companion Panel</div>
   <h2 class="sec-title">固定面板模式</h2>
-  <p class="sec-desc">除弹窗外，ZEN GENE Translator 还提供一个常驻屏幕边缘的固定翻译面板。</p>
+  <p class="sec-desc">除弹窗外，ZEN GENE Translator 还提供一个常驻屏幕的固定翻译面板，与弹窗界面完全一致——唯一区别是替换后保持显示，便于连续编辑。</p>
 
   <div class="grid grid-2">
     <div class="card">
       <span class="card-icon">📌</span>
       <div class="card-title">常驻显示</div>
-      <div class="card-desc">面板固定在屏幕右侧，不遮挡工作区，触发后自动填入结果。</div>
+      <div class="card-desc">面板触发后保持显示，连续多次翻译/润色无需重新弹出，工作流不被打断。</div>
     </div>
     <div class="card">
       <span class="card-icon">🖱</span>
-      <div class="card-title">双击直接应用</div>
-      <div class="card-desc">双击任意版本的译文，立即替换回原输入框，无需额外点击"应用"按钮。</div>
+      <div class="card-title">双击替换</div>
+      <div class="card-desc">双击任一版本的译文即立即替换回原输入框，与弹窗操作完全一致。</div>
     </div>
     <div class="card">
       <span class="card-icon">📐</span>
       <div class="card-title">拖拽定位</div>
-      <div class="card-desc">面板可自由拖拽到屏幕任意位置，位置自动保存，重启后复原。</div>
+      <div class="card-desc">面板可自由拖拽，位置自动保存，重启后复原。窗口任意边缘可调整大小。</div>
     </div>
     <div class="card">
-      <span class="card-icon">➖</span>
-      <div class="card-title">一键折叠</div>
-      <div class="card-desc">点击面板右上角 − 可折叠收起，折叠状态同样自动保存。</div>
+      <span class="card-icon">↻</span>
+      <div class="card-title">刷新原文</div>
+      <div class="card-desc">"原文"区右侧"刷新原文"按钮可重新读取触发窗口的当前内容，便于用户先编辑再重新翻译。</div>
     </div>
   </div>
 </section>
@@ -576,16 +576,58 @@
     </div>
     <div class="card">
       <div class="card-title">📝 自定义提示词</div>
-      <div class="card-desc" style="margin-top:8px">可为每个场景（日常 / 随意 / 商务）自定义 AI 提示词，精确控制输出风格。</div>
+      <div class="card-desc" style="margin-top:8px">系统提示词与 6 个场景模板均可单字段直接编辑，配 <strong>使用默认 / 已自定义</strong> 状态徽章，一键恢复默认。</div>
     </div>
     <div class="card">
-      <div class="card-title">📖 个人风格指南</div>
-      <div class="card-desc" style="margin-top:8px">填写个人偏好和风格要求，AI 每次处理时都会参考。支持词汇替换规则（如 utilize → use）。点击"预览最终 Prompt"可查看实际发送给模型的完整内容。</div>
+      <div class="card-title">📖 个人风格 + 词汇偏好</div>
+      <div class="card-desc" style="margin-top:8px">填写个人风格指南与词汇替换偏好（如 utilize → use），AI 每次处理时自动参考。词汇偏好用结构化表格编辑，无需手动键入箭头。</div>
     </div>
     <div class="card">
       <div class="card-title">🗺 窗口场景映射</div>
       <div class="card-desc" style="margin-top:8px">自定义窗口标题关键词与场景的对应关系，打开特定应用时自动切换到对应风格。</div>
     </div>
+    <div class="card">
+      <div class="card-title">🧠 推理模型适配</div>
+      <div class="card-desc" style="margin-top:8px">使用 Qwen3、DeepSeek-R1 等带 <code>&lt;think&gt;</code> 推理过程的模型时，自动注入 <code>/no_think</code> 并过滤推理标签，输出只见翻译结果。</div>
+    </div>
+    <div class="card">
+      <div class="card-title">↺ Ghost 失败重试</div>
+      <div class="card-desc" style="margin-top:8px">静默替换模式下若翻译失败，托盘菜单出现"重试上次失败翻译"，一键用相同内容重新发起。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 学习数据 ──────────────────────────────────────────── -->
+<section class="pb-before">
+  <div class="sec-label">Learning</div>
+  <h2 class="sec-title">长期学习数据</h2>
+  <p class="sec-desc">每次确认的翻译/优化都会被自动加密记录，可随时导出为 Markdown 让 AI 帮你分析常见错误、不地道表达，长期持续提升。</p>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <span class="card-icon">🔐</span>
+      <div class="card-title">加密本地存储</div>
+      <div class="card-desc">每条记录独立用 Windows DPAPI 加密，绑定当前 Windows 账户。文件复制到他人电脑无法解密。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">⚡</span>
+      <div class="card-title">零性能影响</div>
+      <div class="card-desc">写入在后台线程异步进行，append 是 O(1)，文件多大都不影响翻译速度。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">📤</span>
+      <div class="card-title">一键导出</div>
+      <div class="card-desc">设置 → 学习数据 → 导出为 Markdown。可按模式（仅翻译 / 仅优化）和范围（全部 / 最近 100 条 / 500 条 / 30 天）筛选。</div>
+    </div>
+    <div class="card">
+      <span class="card-icon">🤖</span>
+      <div class="card-title">AI 直接分析</div>
+      <div class="card-desc">导出文件顶部自带分析提示词。复制整份文件粘贴给 ChatGPT / Claude，AI 会输出常见错误、词汇建议、风格观察。提示词可在设置中编辑。</div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>记录规则：</strong>仅记录用户实际"确认替换"的翻译（弹窗按 Enter / 双击 / 静默替换 / 固定面板替换），取消的翻译不记。可在设置中随时关闭自动记录或一键清空。
   </div>
 </section>
 
@@ -603,9 +645,10 @@
       <tr><td>后缀触发</td><td>在文字末尾输入 <kbd>··</kbd>（可自定义）</td></tr>
       <tr><td>确认并替换</td><td><kbd>Enter</kbd> 或双击结果文字</td></tr>
       <tr><td>取消 / 关闭弹窗</td><td><kbd>Esc</kbd></td></tr>
-      <tr><td>重新生成</td><td>点击弹窗右下角 <kbd>↺</kbd></td></tr>
+      <tr><td>重新生成</td><td>点击 <kbd>↺</kbd> 按钮</td></tr>
       <tr><td>只处理选中部分</td><td>先选中文字，再触发</td></tr>
-      <tr><td>打开设置</td><td>左键单击系统托盘图标</td></tr>
+      <tr><td>打开托盘菜单</td><td>左键单击系统托盘图标</td></tr>
+      <tr><td>打开设置</td><td>双击系统托盘图标，或托盘菜单选"设置…"</td></tr>
     </tbody>
   </table>
 </section>
@@ -620,7 +663,7 @@
       <div class="step-dot">1</div>
       <div class="step-body">
         <h4>运行 ZenGene.exe</h4>
-        <p>双击 exe 文件，程序自动运行到系统托盘（任务栏右下角出现圆弧图标）。左键单击图标可随时打开设置。</p>
+        <p>双击 exe 文件，程序自动运行到系统托盘（任务栏右下角出现圆弧图标）。左键打开菜单，双击直接打开设置。</p>
       </div>
     </div>
     <div class="step">
