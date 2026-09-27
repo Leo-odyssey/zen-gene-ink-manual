@@ -3,723 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>译墨 Ink — 产品说明书 · ZEN GENE</title>
+<title>译墨 Ink — 产品说明书 · ZenGene</title>
+<meta name="description" content="译墨 Ink：在任何输入框里写中文，按一下快捷键，原地变成地道的英文。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M227.9 122.8A100 100 0 1 1 181 43.2' fill='none' stroke='%23141414' stroke-width='36' stroke-linecap='round'/%3E%3Ccircle cx='206' cy='206' r='21' fill='%2356cfe1'/%3E%3C/svg%3E">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   :root {
-    --blue:    #4f84c4;
-    --blue-lt: #79b8ff;
-    --blue-dk: #162240;
-    --bg:      #0d1117;
-    --bg2:     #13171d;
-    --bg3:     #161b22;
-    --bg4:     #21262d;
-    --border:  #1e2636;
-    --text:    #dde4ee;
-    --muted:   #7d8590;
-    --teal:    #56cfe1;
-    --green:   #1a7f37;
+    --bg: #fcfcfb; --surface: #ffffff; --hover: #f1f1ef;
+    --line: rgba(0,0,0,.07); --line-strong: rgba(0,0,0,.14);
+    --t1: #141414; --t2: #5c5c5c; --t3: #8a8a8a;
+    --brand: #56cfe1; --seal: #b8553f;
   }
-
   body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Inter", "Segoe UI", "Source Han Sans CN", "Microsoft YaHei UI", sans-serif;
-    line-height: 1.7;
-    font-size: 15px;
+    background: var(--bg); color: var(--t1);
+    font-family: "Segoe UI", "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei UI", -apple-system, sans-serif;
+    font-size: 15px; line-height: 1.75; -webkit-font-smoothing: antialiased;
   }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--t1); text-decoration: underline; text-underline-offset: 3px; }
 
-  /* ── Hero ─────────────────────────────────────────── */
-  .hero {
-    background: linear-gradient(160deg, #0d1117 0%, #111827 50%, #0e1c2e 100%);
-    border-bottom: 1px solid var(--border);
-    padding: 80px 40px 70px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(79,132,196,.18) 0%, transparent 70%);
-  }
-  .hero-brand {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 3px;
-    color: var(--blue);
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    position: relative;
-  }
-  .hero-title {
-    font-size: clamp(36px, 6vw, 56px);
-    font-weight: 700;
-    letter-spacing: -1px;
-    color: #fff;
-    position: relative;
-    margin-bottom: 6px;
-  }
-  .hero-title span { color: var(--blue-lt); }
-  .hero-sub {
-    font-size: 18px;
-    color: var(--muted);
-    margin-top: 14px;
-    position: relative;
-  }
-  .hero-tag {
-    display: inline-block;
-    margin-top: 28px;
-    padding: 8px 20px;
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 1px;
-    position: relative;
-  }
+  header.top { padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .lockup { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+  .lockup svg { width: 18px; height: 18px; }
+  .lockup .p { color: var(--t3); font-size: 12px; letter-spacing: 1px; }
+  .lockup .n { font-weight: 600; font-size: 14px; }
 
-  /* ── Layout ───────────────────────────────────────── */
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 28px; }
+  .hero { padding: 72px 0 56px; }
+  .hero h1 { font-size: 40px; font-weight: 600; letter-spacing: -.5px; line-height: 1.2; }
+  .hero h1 span { color: var(--t3); font-weight: 400; }
+  .hero p.lead { margin-top: 14px; font-size: 18px; color: var(--t2); max-width: 520px; }
+  .hero .meta { margin-top: 22px; font-size: 12px; color: var(--t3); }
 
-  section { padding: 64px 0 0; }
-  section:last-child { padding-bottom: 80px; }
+  .demo { margin-top: 36px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--surface); padding: 22px 24px 26px; }
+  .demo .field { font-size: 15px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; }
+  .demo .field.before { color: var(--t2); }
+  .demo .arrow { text-align: center; color: var(--t3); font-size: 12px; margin: 10px 0; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; background: var(--t1); color: #f4f4f2; border-radius: 999px; padding: 7px 16px; font-size: 13px; margin-top: 16px; }
+  .pill svg { width: 15px; height: 15px; }
+  .pill .d { opacity: .5; }
+  .pill.err .sq { width: 7px; height: 7px; border-radius: 2px; background: var(--seal); }
 
-  /* ── Section header ───────────────────────────────── */
-  .sec-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 10px;
-  }
-  .sec-title {
-    font-size: 26px;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-  .sec-desc {
-    color: var(--muted);
-    margin-bottom: 36px;
-    max-width: 560px;
-  }
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+  section .sub { color: var(--t2); margin-bottom: 22px; }
+  .label { font-size: 11px; letter-spacing: 1.5px; color: var(--t3); text-transform: uppercase; margin-bottom: 8px; }
 
-  /* ── Cards grid ───────────────────────────────────── */
-  .grid { display: grid; gap: 16px; }
-  .grid-2 { grid-template-columns: 1fr 1fr; }
-  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li { counter-increment: s; position: relative; padding: 0 0 18px 40px; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--line-strong); font-size: 12px; display: grid; place-items: center; color: var(--t2); }
+  ol.steps li b { font-weight: 600; }
+  ol.steps li p { color: var(--t2); font-size: 14px; }
 
-  @media (max-width: 640px) {
-    .grid-2, .grid-3 { grid-template-columns: 1fr; }
-  }
+  .rows { border-top: 1px solid var(--line); }
+  .row { display: flex; justify-content: space-between; gap: 24px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .row .k { font-weight: 500; white-space: nowrap; }
+  .row .v { color: var(--t2); text-align: right; font-size: 14px; }
 
-  .card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    transition: border-color .2s;
-  }
-  .card:hover { border-color: #2a3a52; }
-  .card-icon {
-    font-size: 22px;
-    margin-bottom: 12px;
-    display: block;
-  }
-  .card-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 6px;
-  }
-  .card-desc { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { border: 1px solid var(--line-strong); border-radius: 10px; padding: 16px 18px; background: var(--surface); }
+  .card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .card p { color: var(--t2); font-size: 14px; }
 
-  /* ── Feature highlight ────────────────────────────── */
-  .highlight {
-    background: var(--blue-dk);
-    border: 1px solid #1e3a5f;
-    border-radius: 14px;
-    padding: 28px 32px;
-    margin-bottom: 16px;
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-  }
-  .highlight-num {
-    flex-shrink: 0;
-    width: 36px; height: 36px;
-    background: var(--blue);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 14px; font-weight: 700; color: #fff;
-    margin-top: 2px;
-  }
-  .highlight-body h3 {
-    font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 6px;
-  }
-  .highlight-body p { font-size: 13px; color: #8eadcc; line-height: 1.65; }
+  kbd { font-family: inherit; font-size: 12px; border: 1px solid var(--line-strong); border-radius: 5px; padding: 1px 7px; color: var(--t2); background: var(--surface); white-space: nowrap; }
+  .note { margin-top: 18px; font-size: 13px; color: var(--t3); }
+  .providers { display: flex; flex-wrap: wrap; gap: 8px; }
+  .providers span { border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px 12px; font-size: 13px; color: var(--t2); }
+  .providers span.def { border-color: var(--t1); color: var(--t1); font-weight: 500; }
 
-  /* ── Steps ────────────────────────────────────────── */
-  .steps { display: flex; flex-direction: column; gap: 0; }
-  .step {
-    display: flex;
-    gap: 20px;
-    padding: 20px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .step:last-child { border-bottom: none; }
-  .step-dot {
-    flex-shrink: 0;
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: var(--bg4);
-    border: 2px solid var(--blue);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700; color: var(--blue);
-    margin-top: 2px;
-  }
-  .step-body h4 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 4px; }
-  .step-body p { font-size: 13px; color: var(--muted); }
-
-  /* ── Kbd ──────────────────────────────────────────── */
-  kbd {
-    display: inline-block;
-    padding: 2px 8px;
-    background: var(--bg4);
-    border: 1px solid #30363d;
-    border-bottom-width: 2px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-family: "Consolas", monospace;
-    color: var(--blue-lt);
-    white-space: nowrap;
-  }
-
-  /* ── Badge ────────────────────────────────────────── */
-  .badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 100px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .5px;
-  }
-  .badge-blue { background: #1a3a5c; color: var(--blue-lt); }
-  .badge-teal { background: #0e2a30; color: var(--teal); }
-  .badge-green { background: #0f2a1a; color: #3fb950; }
-
-  /* ── Table ────────────────────────────────────────── */
-  .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .tbl th {
-    text-align: left; padding: 10px 14px;
-    background: var(--bg3); color: var(--blue);
-    font-size: 11px; font-weight: 700; letter-spacing: 1px;
-    border-bottom: 1px solid var(--border);
-  }
-  .tbl th:first-child { border-radius: 10px 0 0 0; }
-  .tbl th:last-child  { border-radius: 0 10px 0 0; }
-  .tbl td {
-    padding: 10px 14px;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-  }
-  .tbl tr:last-child td { border-bottom: none; }
-  .tbl tr:hover td { background: rgba(79,132,196,.05); }
-
-  /* ── Tip box ──────────────────────────────────────── */
-  .tip {
-    background: #0e1c2e;
-    border-left: 3px solid var(--blue);
-    border-radius: 0 10px 10px 0;
-    padding: 14px 18px;
-    font-size: 13px;
-    color: #8eadcc;
-    margin-top: 20px;
-  }
-  .tip strong { color: var(--blue-lt); }
-
-  /* ── Divider ──────────────────────────────────────── */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 56px 0 0;
-  }
-
-  /* ── Footer ───────────────────────────────────────── */
-  .footer {
-    border-top: 1px solid var(--border);
-    padding: 36px 40px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 12px;
-  }
-  .footer .logo { font-size: 16px; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
-
-  /* ── Print / A4 ───────────────────────────────────── */
-  @media print {
-    * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-
-    @page { size: A4; margin: 0; }
-
-    body { font-size: 13px; }
-
-    .wrap { max-width: 100%; padding: 0 6mm; }
-
-    /* Hero: compact for print */
-    .hero { padding: 40px 20px 36px; }
-    .hero-title { font-size: 38px; }
-    .hero-sub { font-size: 15px; }
-    .hero-tag { margin-top: 16px; }
-
-    /* Page break strategy */
-    .pb-before { page-break-before: always; }
-    section { padding-top: 36px; }
-
-    /* Never break inside these */
-    .card        { page-break-inside: avoid; }
-    .highlight   { page-break-inside: avoid; }
-    .step        { page-break-inside: avoid; }
-    tr           { page-break-inside: avoid; }
-    .tip         { page-break-inside: avoid; }
-
-    /* Cards grid: reduce gap */
-    .grid { gap: 10px; }
-    .card { padding: 16px; }
-
-    /* Tables */
-    .tbl { font-size: 12px; }
-    .tbl td, .tbl th { padding: 8px 12px; }
-
-    /* Hide screen-only elements */
-    .screen-only { display: none; }
-
-    /* Document footer (screen) hidden — Playwright adds its own */
-    .footer { display: none; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--t3); font-size: 12px; display: flex; justify-content: space-between; }
+  @media (max-width: 560px) {
+    .hero h1 { font-size: 30px; } .grid { grid-template-columns: 1fr; }
+    .row { flex-direction: column; gap: 2px; } .row .v { text-align: left; }
   }
 </style>
 </head>
 <body>
 
-<!-- ── Hero ──────────────────────────────────────────────── -->
-<div class="hero">
-  <div class="hero-brand">✦ Product Manual</div>
-  <h1 class="hero-title">译墨 <span>Ink</span></h1>
-  <p class="hero-sub">Windows 智能写作助手 · AI 翻译与润色</p>
-  <div class="hero-tag">v1.8.8 &nbsp;·&nbsp; Windows 10 / 11 &nbsp;·&nbsp; 免安装</div>
-</div>
+<header class="top"><div class="wrap">
+  <a class="lockup" href="https://zengene.me">
+    <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M227.9 122.8A100 100 0 1 1 181 43.2" fill="none" stroke="#141414" stroke-width="36" stroke-linecap="round"/><circle cx="206" cy="206" r="21" fill="#56cfe1"/></svg>
+    <span class="p">ZenGene</span><span class="n">Ink</span>
+  </a>
+</div></header>
 
-<div class="wrap">
+<main class="wrap">
 
-<!-- ── 产品概述 ──────────────────────────────────────────── -->
-<section>
-  <div class="sec-label">Overview</div>
-  <h2 class="sec-title">什么是 译墨 Ink？</h2>
-  <p class="sec-desc">译墨 Ink 是一款运行在 Windows 后台的 AI 写作助手。无论你在哪个应用里打字，一个快捷键即可让 AI 帮你翻译或润色当前输入框中的文字，结果直接替换原文，全程无需切换窗口。</p>
+  <div class="hero">
+    <h1>译墨 <span>Ink</span></h1>
+    <p class="lead">在任何输入框里写中文，按一下快捷键，原地变成地道的英文。不弹窗，不复制粘贴。</p>
+    <div class="meta">v2.1 · Windows 桌面工具 · 产品说明书</div>
 
-  <div class="grid grid-3">
-    <div class="card">
-      <span class="card-icon">⚡</span>
-      <div class="card-title">全局触发</div>
-      <div class="card-desc">在任意输入框按下热键或输入后缀，即刻启动 AI 处理。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">🌐</span>
-      <div class="card-title">双向语言</div>
-      <div class="card-desc">自动识别中英文，翻译或润色，无需手动切换模式。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">✦</span>
-      <div class="card-title">场景感知</div>
-      <div class="card-desc">根据当前窗口自动选择日常、随意或商务风格。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">📋</span>
-      <div class="card-title">原地替换</div>
-      <div class="card-desc">确认后直接替换输入框内容，剪贴板自动还原。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">🤖</span>
-      <div class="card-title">多 AI 服务商</div>
-      <div class="card-desc">支持 Anthropic、OpenAI、Gemini、DeepSeek、Groq、Ollama 等，一个入口接入所有模型。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">🔒</span>
-      <div class="card-title">本地加密</div>
-      <div class="card-desc">所有设置仅存本地，API Key 与翻译历史经 Windows DPAPI 加密，绑定当前账户。</div>
-    </div>
-  </div>
-</section>
-
-<!-- ── 触发方式 ──────────────────────────────────────────── -->
-<section class="pb-before">
-  <div class="sec-label">Trigger</div>
-  <h2 class="sec-title">两种触发方式</h2>
-  <p class="sec-desc">根据你的使用习惯选择，两种方式可以同时启用。</p>
-
-  <div class="highlight">
-    <div class="highlight-num">1</div>
-    <div class="highlight-body">
-      <h3>热键触发 &nbsp;<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd></h3>
-      <p>在任意输入框内按下热键，译墨 Ink 自动读取当前输入框的全部内容（或已选中的部分），发送给 AI 处理。热键组合可在设置中自定义。</p>
-    </div>
-  </div>
-
-  <div class="highlight">
-    <div class="highlight-num">2</div>
-    <div class="highlight-body">
-      <h3>后缀触发 &nbsp;<kbd>··</kbd>（默认，可自定义）</h3>
-      <p>在文字末尾连续输入两个触发字符（如 <kbd>··</kbd>），自动检测并启动处理，后缀字符会从最终结果中自动删除。适合右手持鼠标时的左手操作。后缀字符可在设置中修改为任意两字符组合。</p>
-    </div>
-  </div>
-
-  <div class="tip">
-    <strong>提示：</strong>如果你只选中了部分文字再触发，AI 只会处理选中的内容，其余文字保持不变。
-  </div>
-</section>
-
-<!-- ── 工作流程 ──────────────────────────────────────────── -->
-<section>
-  <div class="sec-label">Workflow</div>
-  <h2 class="sec-title">两种工作流程</h2>
-  <p class="sec-desc">可按需选择带弹窗的标准流程，或完全无感的静默替换模式。</p>
-
-  <div class="grid grid-2" style="margin-bottom: 24px;">
-    <div class="card">
-      <div class="card-title">💬 标准弹窗流程</div>
-      <div class="card-desc" style="margin-top:8px">
-        触发后弹窗出现，AI 实时流式输出结果。查看满意后按 <kbd>Enter</kbd> 替换，或双击结果文字直接替换。可切换场景重新生成，或按 <kbd>Esc</kbd> 取消。
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-title">👻 静默替换模式</div>
-      <div class="card-desc" style="margin-top:8px">
-        在设置中开启<strong>静默替换</strong>后，触发即处理，完成后文字直接替换，全程无任何弹窗。出错时仅通过系统托盘提示。适合熟悉工具的用户。
+    <div class="demo">
+      <div class="field before">我明天下午三点有空，可以一起讨论下这个方案吗？</div>
+      <div class="arrow">按 <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd></div>
+      <div class="field">I'm free tomorrow at 3pm — could we go over the proposal together?</div>
+      <div class="pill">
+        <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M227.9 122.8A100 100 0 1 1 181 43.2" fill="none" stroke="#f4f4f2" stroke-width="36" stroke-linecap="round"/><circle cx="206" cy="206" r="21" fill="#56cfe1"/></svg>
+        商务<span class="d">· 已替换 · ↺ 撤销</span>
       </div>
     </div>
   </div>
 
-  <div class="steps">
-    <div class="step">
-      <div class="step-dot">1</div>
-      <div class="step-body">
-        <h4>触发 → 弹窗出现（标准模式）</h4>
-        <p>弹窗在光标附近出现，顶部显示原文，底部开始流式输出 AI 结果，动态指示符 <strong>·&thinsp;··&thinsp;···</strong> 表示正在生成。</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-dot">2</div>
-      <div class="step-body">
-        <h4>查看结果 → 切换场景（可选）</h4>
-        <p>弹窗顶部有 <strong>日常 / 随意 / 商务</strong> 三个场景按钮，切换后 AI 立即以新风格重新生成。场景切换会自动保存为下次默认。右下角 <kbd>↺</kbd> 可重试当前场景。</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-dot">3</div>
-      <div class="step-body">
-        <h4>确认 → 文字替换</h4>
-        <p>按 <kbd>Enter</kbd> 或<strong>双击</strong>结果文字，AI 结果直接替换回原输入框；按 <kbd>Esc</kbd> 或点击 <strong>取消</strong> 放弃，剪贴板自动还原。</p>
-      </div>
-    </div>
-  </div>
-</section>
+  <section>
+    <h2>怎么用</h2>
+    <p class="sub">整个过程只有一个动作，其余都自动完成。</p>
+    <ol class="steps">
+      <li><b>照常打字</b><p>在微信、Outlook、Slack、浏览器……任何输入框里写中文草稿，或者写一段不太地道的英文。</p></li>
+      <li><b>按快捷键</b><p><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd>，或在末尾打出后缀字符（默认 <kbd>··</kbd>）。选中一部分文字再按，就只处理选中的部分。</p></li>
+      <li><b>原地替换</b><p>几秒内，输入框里的文字被换成地道英文。屏幕边缘出现一个小胶囊告诉你完成了。</p></li>
+      <li><b>不满意就撤销</b><p>替换后 2.5 秒内再按一次快捷键，恢复原文。</p></li>
+    </ol>
+  </section>
 
-<!-- ── 场景模式 ──────────────────────────────────────────── -->
-<section>
-  <div class="sec-label">Scenes</div>
-  <h2 class="sec-title">三种场景风格</h2>
-  <p class="sec-desc">译墨 Ink 会根据当前应用自动选择场景，也可手动切换。切换后自动保存为下次默认。</p>
-
-  <table class="tbl">
-    <thead>
-      <tr>
-        <th>场景</th>
-        <th>适用情境</th>
-        <th>风格特点</th>
-        <th>自动触发应用</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="badge badge-blue">日常</span></td>
-        <td>口语对话、一般聊天</td>
-        <td>自然流畅，保留个人风格</td>
-        <td>默认场景</td>
-      </tr>
-      <tr>
-        <td><span class="badge badge-teal">随意</span></td>
-        <td>社交媒体、朋友聊天</td>
-        <td>轻松随意，语气活泼</td>
-        <td>WhatsApp</td>
-      </tr>
-      <tr>
-        <td><span class="badge badge-green">商务</span></td>
-        <td>邮件、正式沟通</td>
-        <td>专业严谨，措辞得体</td>
-        <td>Outlook、Mail</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="tip">
-    <strong>窗口场景映射：</strong>在设置中可自定义哪些窗口关键词自动对应哪个场景，例如将 "Teams" 映射到商务场景。
-  </div>
-</section>
-
-<!-- ── AI 模式 ──────────────────────────────────────────── -->
-<section>
-  <div class="sec-label">AI Mode</div>
-  <h2 class="sec-title">智能语言识别</h2>
-  <p class="sec-desc">译墨 Ink 自动判断输入内容是需要翻译还是润色，无需手动选择模式。</p>
-
-  <div class="grid grid-2">
-    <div class="card">
-      <div class="card-title">🔄 翻译模式</div>
-      <div class="card-desc" style="margin-top:8px">
-        当输入内容为中文时，翻译为英文；<br>
-        当输入内容为英文时，翻译为中文。<br><br>
-        <span class="badge badge-blue">自动检测</span>
-      </div>
+  <section>
+    <h2>它会替你判断</h2>
+    <p class="sub">你不需要选模式、选语气。</p>
+    <div class="grid">
+      <div class="card"><h3>翻译还是润色</h3><p>出现中文就翻译成英文；全是英文就润色成地道表达。中英混写也会整段处理。</p></div>
+      <div class="card"><h3>用什么语气</h3><p>按你正在用的应用自动选：Outlook 用「商务」，微信用「随意」，其余用「日常」。可在托盘菜单里改。</p></div>
+      <div class="card"><h3>写出意图</h3><p>不逐字直译。粗糙的草稿会被整理成你真正想表达的意思，不会冒出 AI 腔和中式英语。</p></div>
+      <div class="card"><h3>英文风格</h3><p>美式、英式或新加坡式拼写与用词，在设置主页一键切换。</p></div>
     </div>
-    <div class="card">
-      <div class="card-title">✨ 润色模式</div>
-      <div class="card-desc" style="margin-top:8px">
-        当输入内容为中英混写，或已是目标语言时，AI 进行改写和优化，使表达更自然地道。<br><br>
-        <span class="badge badge-teal">自动检测</span>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── 多服务商 ──────────────────────────────────────────── -->
-<section class="pb-before">
-  <div class="sec-label">Providers</div>
-  <h2 class="sec-title">多 AI 服务商支持</h2>
-  <p class="sec-desc">v1.8.0 起支持接入多个 AI 服务商，在设置中切换即可，无需修改任何其他配置。</p>
+  <section>
+    <h2>越用越懂你</h2>
+    <p class="sub">这些都在 设置 → 高级 → 个性化，全部存在本机。</p>
+    <div class="rows">
+      <div class="row"><span class="k">从我的修改中学习</span><span class="v">替换后你改过的英文，它会记下来，归纳成规则用在下一次</span></div>
+      <div class="row"><span class="k">个人风格指南</span><span class="v">写下偏好（如"不要用 reach out"），也可以从翻译历史自动生成</span></div>
+      <div class="row"><span class="k">个人词库</span><span class="v">人名、公司名、固定译法、缩写，保证每次都一致</span></div>
+      <div class="row"><span class="k">上下文感知</span><span class="v">读取当前网页聊天的可见内容作为参考（WhatsApp Web、Outlook Web 等）</span></div>
+    </div>
+  </section>
 
-  <table class="tbl">
-    <thead>
-      <tr>
-        <th>服务商</th>
-        <th>代表模型</th>
-        <th>特点</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>Anthropic</td><td>Claude Haiku / Sonnet / Opus</td><td>默认，写作质量高</td></tr>
-      <tr><td>OpenAI</td><td>GPT-4o、GPT-4o mini</td><td>广泛兼容</td></tr>
-      <tr><td>Google Gemini</td><td>Gemini 2.0 Flash、1.5 Pro</td><td>速度快，免费额度充足</td></tr>
-      <tr><td>DeepSeek</td><td>DeepSeek Chat / Reasoner</td><td>价格极低</td></tr>
-      <tr><td>Groq</td><td>Llama 3、Mixtral</td><td>推理速度极快</td></tr>
-      <tr><td>Ollama</td><td>本地模型</td><td>完全离线，数据不出本机</td></tr>
-      <tr><td>OpenRouter</td><td>100+ 模型</td><td>统一接口访问多家模型</td></tr>
-      <tr><td>自定义</td><td>任意兼容 OpenAI 协议的服务</td><td>填入 Base URL 即可</td></tr>
-    </tbody>
-  </table>
+  <section>
+    <h2>设置</h2>
+    <p class="sub">打开设置只看到 6 行；改完立即生效，没有「保存」按钮。</p>
+    <div class="label">主页</div>
+    <div class="rows">
+      <div class="row"><span class="k">快捷键</span><span class="v">点击后按下新组合；被其他程序占用时会提示并自动恢复</span></div>
+      <div class="row"><span class="k">英文风格</span><span class="v">美式 / 英式 / 新式</span></div>
+      <div class="row"><span class="k">从我的修改中学习</span><span class="v">开关，旁边显示已学了多少处</span></div>
+      <div class="row"><span class="k">连接</span><span class="v">当前服务商；第一次使用时在这里粘贴 Key</span></div>
+      <div class="row"><span class="k">开机自启</span><span class="v">开关</span></div>
+      <div class="row"><span class="k">高级</span><span class="v">交互 · 个性化 · 模型与数据</span></div>
+    </div>
+    <div class="label" style="margin-top:28px">高级</div>
+    <div class="rows">
+      <div class="row"><span class="k">交互</span><span class="v">静默替换（关掉后先弹窗确认）· 后缀触发 · 胶囊位置 · 上下文感知</span></div>
+      <div class="row"><span class="k">个性化</span><span class="v">个人风格指南 · 个人词库 · 学到的规则</span></div>
+      <div class="row"><span class="k">模型与数据</span><span class="v">服务商与模型 · 翻译历史与导出 · API 用量 · 提示词（专家）</span></div>
+    </div>
+    <p class="note">托盘菜单可以快速切换语气、英文风格、后缀触发，或暂停。左键点托盘图标打开菜单，双击打开设置。</p>
+  </section>
 
-  <div class="tip">
-    <strong>模型列表：</strong>选择服务商后点击"获取列表"可自动拉取可用模型。若服务商不支持列表接口，可直接手动输入模型名称（如 <code>gpt-4o-mini</code>）。
-  </div>
-</section>
+  <section>
+    <h2>快速上手</h2>
+    <p class="sub">免安装，一分钟就能用。</p>
+    <ol class="steps">
+      <li><b>运行 ZenGeneInk.exe</b><p>托盘出现 ZenGene 标志（一道圆弧加一个青色圆点）即已启动。</p></li>
+      <li><b>粘贴 API Key</b><p>设置会自动打开。没有 Key？到 <a href="https://cloud.cerebras.ai/" target="_blank" rel="noopener">Cerebras</a> 免费申请，每天有免费额度。以 <kbd>csk-</kbd>、<kbd>gsk_</kbd>、<kbd>sk-ant-</kbd>、<kbd>sk-or-</kbd>、<kbd>AIza</kbd> 开头的 Key 会自动选好对应服务商。</p></li>
+      <li><b>试一下</b><p>随便找个输入框写句中文，按 <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd>。</p></li>
+    </ol>
+  </section>
 
-<!-- ── 固定面板 ──────────────────────────────────────────── -->
-<section>
-  <div class="sec-label">Companion Panel</div>
-  <h2 class="sec-title">固定面板模式</h2>
-  <p class="sec-desc">除弹窗外，译墨 Ink 还提供一个常驻屏幕的固定翻译面板，与弹窗界面完全一致——唯一区别是替换后保持显示，便于连续编辑。</p>
+  <section>
+    <h2>AI 服务商</h2>
+    <p class="sub">默认使用 Cerebras 的 <code>qwen-3.8-27b</code>：快（通常 1 秒左右），质量稳定，有免费额度。也可以换成下面任何一家。</p>
+    <div class="providers">
+      <span class="def">Cerebras（默认）</span><span>Anthropic</span><span>OpenRouter</span><span>OpenAI</span><span>Google Gemini</span><span>DeepSeek</span><span>Groq</span><span>SambaNova</span><span>硅基流动 SiliconFlow</span><span>Ollama（本地）</span><span>自定义接口</span>
+    </div>
+    <p class="note">在 设置 → 高级 → 模型与接口 里切换；「获取列表」可拉取服务商当前可用的模型。</p>
+  </section>
 
-  <div class="grid grid-2">
-    <div class="card">
-      <span class="card-icon">📌</span>
-      <div class="card-title">常驻显示</div>
-      <div class="card-desc">面板触发后保持显示，连续多次翻译/润色无需重新弹出，工作流不被打断。</div>
+  <section>
+    <h2>快捷键</h2>
+    <div class="rows">
+      <div class="row"><span class="k"><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd></span><span class="v">翻译 / 润色当前输入框（可自定义）</span></div>
+      <div class="row"><span class="k">替换后 2.5 秒内再按一次</span><span class="v">撤销，恢复原文</span></div>
+      <div class="row"><span class="k">末尾打 <kbd>··</kbd></span><span class="v">后缀触发（可自定义或关闭）</span></div>
+      <div class="row"><span class="k">弹窗里 <kbd>Enter</kbd> / <kbd>Esc</kbd></span><span class="v">替换 / 取消（仅在关闭静默替换时出现弹窗）</span></div>
     </div>
-    <div class="card">
-      <span class="card-icon">🖱</span>
-      <div class="card-title">双击替换</div>
-      <div class="card-desc">双击任一版本的译文即立即替换回原输入框，与弹窗操作完全一致。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">📐</span>
-      <div class="card-title">拖拽定位</div>
-      <div class="card-desc">面板可自由拖拽，位置自动保存，重启后复原。窗口任意边缘可调整大小。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">↻</span>
-      <div class="card-title">刷新原文</div>
-      <div class="card-desc">"原文"区右侧"刷新原文"按钮可重新读取触发窗口的当前内容，便于用户先编辑再重新翻译。</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── 高级功能 ──────────────────────────────────────────── -->
-<section class="pb-before">
-  <div class="sec-label">Advanced</div>
-  <h2 class="sec-title">高级功能</h2>
-  <p class="sec-desc">在设置中开启以下选项，获得更多控制和灵活性。</p>
+  <section>
+    <h2>隐私</h2>
+    <div class="rows">
+      <div class="row"><span class="k">API Key</span><span class="v">用 Windows 系统加密（DPAPI）保存在本机</span></div>
+      <div class="row"><span class="k">翻译历史</span><span class="v">可关闭；开启时逐条加密保存在本机，可导出或一键清空</span></div>
+      <div class="row"><span class="k">发送给 AI 的内容</span><span class="v">只有你要处理的文字，以及开启上下文感知时的可见对话</span></div>
+      <div class="row"><span class="k">诊断日志</span><span class="v">只记录耗时、成功与否等统计，不记录任何文字内容</span></div>
+    </div>
+  </section>
 
-  <div class="grid grid-2">
-    <div class="card">
-      <div class="card-title">👻 静默替换</div>
-      <div class="card-desc" style="margin-top:8px">开启后触发即处理，完成直接替换，全程无弹窗。出错时仅托盘提示。双版本模式下自动关闭。</div>
+  <section>
+    <h2>系统要求</h2>
+    <div class="rows">
+      <div class="row"><span class="k">操作系统</span><span class="v">Windows 10 / 11（64 位）</span></div>
+      <div class="row"><span class="k">网络</span><span class="v">能访问所选服务商的 API（Ollama 本地模式除外）</span></div>
+      <div class="row"><span class="k">安装</span><span class="v">免安装，单个 exe；不需要管理员权限</span></div>
+      <div class="row"><span class="k">换电脑</span><span class="v">复制 ZenGeneInk.exe 即可，首次运行重新填 Key</span></div>
     </div>
-    <div class="card">
-      <div class="card-title">🔢 双版本生成</div>
-      <div class="card-desc" style="margin-top:8px">同时生成两个不同风格的译文版本，对比选用，双击任意一个即刻应用。</div>
-    </div>
-    <div class="card">
-      <div class="card-title">🌍 英文风格</div>
-      <div class="card-desc" style="margin-top:8px">可选美式、英式或新加坡英式，影响用词习惯和拼写规范，注入每次翻译。</div>
-    </div>
-    <div class="card">
-      <div class="card-title">📝 自定义提示词</div>
-      <div class="card-desc" style="margin-top:8px">系统提示词与 6 个场景模板均可单字段直接编辑，配 <strong>使用默认 / 已自定义</strong> 状态徽章，一键恢复默认。</div>
-    </div>
-    <div class="card">
-      <div class="card-title">📖 个人风格 + 词汇偏好</div>
-      <div class="card-desc" style="margin-top:8px">填写个人风格指南与词汇替换偏好（如 utilize → use），AI 每次处理时自动参考。词汇偏好用结构化表格编辑，无需手动键入箭头。</div>
-    </div>
-    <div class="card">
-      <div class="card-title">🗺 窗口场景映射</div>
-      <div class="card-desc" style="margin-top:8px">自定义窗口标题关键词与场景的对应关系，打开特定应用时自动切换到对应风格。</div>
-    </div>
-    <div class="card">
-      <div class="card-title">🧠 推理模型适配</div>
-      <div class="card-desc" style="margin-top:8px">使用 Qwen3、DeepSeek-R1 等带 <code>&lt;think&gt;</code> 推理过程的模型时，自动注入 <code>/no_think</code> 并过滤推理标签，输出只见翻译结果。</div>
-    </div>
-    <div class="card">
-      <div class="card-title">↺ Ghost 失败重试</div>
-      <div class="card-desc" style="margin-top:8px">静默替换模式下若翻译失败，托盘菜单出现"重试上次失败翻译"，一键用相同内容重新发起。</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ── 学习数据 ──────────────────────────────────────────── -->
-<section class="pb-before">
-  <div class="sec-label">Learning</div>
-  <h2 class="sec-title">长期学习数据</h2>
-  <p class="sec-desc">每次确认的翻译/优化都会被自动加密记录，可随时导出为 Markdown 让 AI 帮你分析常见错误、不地道表达，长期持续提升。</p>
+</main>
 
-  <div class="grid grid-2">
-    <div class="card">
-      <span class="card-icon">🔐</span>
-      <div class="card-title">加密本地存储</div>
-      <div class="card-desc">每条记录独立用 Windows DPAPI 加密，绑定当前 Windows 账户。文件复制到他人电脑无法解密。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">⚡</span>
-      <div class="card-title">零性能影响</div>
-      <div class="card-desc">写入在后台线程异步进行，append 是 O(1)，文件多大都不影响翻译速度。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">📤</span>
-      <div class="card-title">一键导出</div>
-      <div class="card-desc">设置 → 学习数据 → 导出为 Markdown。可按模式（仅翻译 / 仅优化）和范围（全部 / 最近 100 条 / 500 条 / 30 天）筛选。</div>
-    </div>
-    <div class="card">
-      <span class="card-icon">🤖</span>
-      <div class="card-title">AI 直接分析</div>
-      <div class="card-desc">导出文件顶部自带分析提示词。复制整份文件粘贴给 ChatGPT / Claude，AI 会输出常见错误、词汇建议、风格观察。提示词可在设置中编辑。</div>
-    </div>
-  </div>
-
-  <div class="tip">
-    <strong>记录规则：</strong>仅记录用户实际"确认替换"的翻译（弹窗按 Enter / 双击 / 静默替换 / 固定面板替换），取消的翻译不记。可在设置中随时关闭自动记录或一键清空。
-  </div>
-</section>
-
-<!-- ── 快捷键参考 ──────────────────────────────────────────── -->
-<section>
-  <div class="sec-label">Shortcuts</div>
-  <h2 class="sec-title">快捷键一览</h2>
-
-  <table class="tbl">
-    <thead>
-      <tr><th>操作</th><th>方式</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>触发翻译 / 润色</td><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Space</kbd>（可自定义）</td></tr>
-      <tr><td>后缀触发</td><td>在文字末尾输入 <kbd>··</kbd>（可自定义）</td></tr>
-      <tr><td>确认并替换</td><td><kbd>Enter</kbd> 或双击结果文字</td></tr>
-      <tr><td>取消 / 关闭弹窗</td><td><kbd>Esc</kbd></td></tr>
-      <tr><td>重新生成</td><td>点击 <kbd>↺</kbd> 按钮</td></tr>
-      <tr><td>只处理选中部分</td><td>先选中文字，再触发</td></tr>
-      <tr><td>打开托盘菜单</td><td>左键单击系统托盘图标</td></tr>
-      <tr><td>打开设置</td><td>双击系统托盘图标，或托盘菜单选"设置…"</td></tr>
-    </tbody>
-  </table>
-</section>
-
-<!-- ── 快速上手 ──────────────────────────────────────────── -->
-<section class="pb-before">
-  <div class="sec-label">Getting Started</div>
-  <h2 class="sec-title">快速上手</h2>
-
-  <div class="steps">
-    <div class="step">
-      <div class="step-dot">1</div>
-      <div class="step-body">
-        <h4>运行 ZenGeneInk.exe</h4>
-        <p>双击 exe 文件，程序自动运行到系统托盘（任务栏右下角出现圆弧图标）。左键打开菜单，双击直接打开设置。</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-dot">2</div>
-      <div class="step-body">
-        <h4>选择服务商并填写 API Key</h4>
-        <p>首次运行自动弹出设置窗口。选择你使用的 AI 服务商，填入对应的 API Key 并保存。默认使用 Anthropic Claude，Key 在 <strong>console.anthropic.com</strong> 申请。</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-dot">3</div>
-      <div class="step-body">
-        <h4>在任意输入框测试</h4>
-        <p>打开记事本或任意聊天工具，输入一段文字，按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Space</kbd>，观察弹窗出现并开始输出结果。</p>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-dot">4</div>
-      <div class="step-body">
-        <h4>按 Enter 或双击替换</h4>
-        <p>对结果满意后按 <kbd>Enter</kbd> 或直接双击结果文字，文字自动替换回输入框。熟悉后可开启<strong>静默替换</strong>，彻底省略这一步。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── 系统要求 ──────────────────────────────────────────── -->
-<section>
-  <div class="sec-label">System</div>
-  <h2 class="sec-title">系统要求</h2>
-
-  <table class="tbl">
-    <thead>
-      <tr><th>项目</th><th>要求</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>操作系统</td><td>Windows 10 / 11（64 位）</td></tr>
-      <tr><td>网络</td><td>需要访问所选 AI 服务商的 API（Ollama 本地模式除外）</td></tr>
-      <tr><td>API Key</td><td>所选服务商的 API Key（Ollama 本地模式无需 Key）</td></tr>
-      <tr><td>安装</td><td>免安装，单文件或文件夹版本均可直接运行</td></tr>
-      <tr><td>管理员权限</td><td>不需要</td></tr>
-    </tbody>
-  </table>
-
-  <div class="tip">
-    <strong>迁移到新电脑：</strong>只需复制 <strong>ZenGeneInk.exe</strong>（或整个 ZenGeneInk-portable 文件夹），首次运行重新填写 API Key 即可。
-  </div>
-</section>
-
-</div><!-- /wrap -->
-
-<!-- ── Footer ──────────────────────────────────────────────── -->
-<div class="footer">
-  <div class="logo">✦ ZEN GENE</div>
-  <div>Simplicity at its Core</div>
-</div>
+<footer class="wrap">
+  <span>ZenGene · Simplicity at its core.</span>
+  <a href="https://zengene.me">zengene.me</a>
+</footer>
 
 </body>
 </html>
