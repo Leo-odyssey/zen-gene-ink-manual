@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>译墨 Ink — 产品说明书 · ZenGene</title>
 <meta name="description" content="译墨 Ink：在任何输入框里写中文，按一下快捷键，原地变成地道的英文。">
+<link rel="alternate" hreflang="en" href="https://leo-odyssey.github.io/zen-gene-ink-manual/en/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M227.9 122.8A100 100 0 1 1 181 43.2' fill='none' stroke='%23141414' stroke-width='36' stroke-linecap='round'/%3E%3Ccircle cx='206' cy='206' r='21' fill='%2356cfe1'/%3E%3C/svg%3E">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,6 +29,11 @@
   .lockup .p { color: var(--t3); font-size: 12px; letter-spacing: 1px; }
   .lockup .n { font-weight: 600; font-size: 14px; }
 
+  header.top .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .langs { font-size: 13px; color: var(--t3); }
+  .langs a { color: var(--t3); text-decoration: none; }
+  .langs a:hover { color: var(--t1); }
+  .langs b { color: var(--t1); font-weight: 500; }
   .hero { padding: 72px 0 56px; }
   .hero h1 { font-size: 40px; font-weight: 600; letter-spacing: -.5px; line-height: 1.2; }
   .hero h1 span { color: var(--t3); font-weight: 400; }
@@ -84,6 +90,7 @@
     <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M227.9 122.8A100 100 0 1 1 181 43.2" fill="none" stroke="#141414" stroke-width="36" stroke-linecap="round"/><circle cx="206" cy="206" r="21" fill="#56cfe1"/></svg>
     <span class="p">ZenGene</span><span class="n">Ink</span>
   </a>
+  <span class="langs"><b>中文</b> · <a href="en/" hreflang="en" lang="en">English</a></span>
 </div></header>
 
 <main class="wrap">
@@ -99,7 +106,7 @@
       <div class="field">I'm free tomorrow at 3pm — could we go over the proposal together?</div>
       <div class="pill">
         <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M227.9 122.8A100 100 0 1 1 181 43.2" fill="none" stroke="#f4f4f2" stroke-width="36" stroke-linecap="round"/><circle cx="206" cy="206" r="21" fill="#56cfe1"/></svg>
-        商务<span class="d">· 已替换 · ↺ 撤销</span>
+        商务<span class="d">· 已替换 · 再按 = 重说</span>
       </div>
     </div>
   </div>
@@ -111,7 +118,7 @@
       <li><b>照常打字</b><p>在微信、Outlook、Slack、浏览器……任何输入框里写中文草稿，或者写一段不太地道的英文。</p></li>
       <li><b>按快捷键</b><p><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd>，或在末尾打出后缀字符（默认 <kbd>··</kbd>）。选中一部分文字再按，就只处理选中的部分。</p></li>
       <li><b>原地替换</b><p>几秒内，输入框里的文字被换成地道英文。屏幕边缘出现一个小胶囊告诉你完成了。</p></li>
-      <li><b>不满意就撤销</b><p>替换后 2.5 秒内再按一次快捷键，恢复原文。</p></li>
+      <li><b>不满意就再按一次</b><p>默认只改错、不改你的说法。想要更大幅度的改写，对刚替换的文字再按一次快捷键，变成「重说」版；第三次按回原文。没有时间限制，只要输入框里还是它写的那句话。</p></li>
     </ol>
   </section>
 
@@ -119,7 +126,7 @@
     <h2>它会替你判断</h2>
     <p class="sub">你不需要选模式、选语气。</p>
     <div class="grid">
-      <div class="card"><h3>翻译还是润色</h3><p>出现中文就翻译成英文；全是英文就润色成地道表达。中英混写也会整段处理。</p></div>
+      <div class="card"><h3>翻译还是润色</h3><p>出现中文就翻译成英文；全是英文就只改错、改不地道的地方，保留你的用词和语气（缩写、小写都不动）。中英混写也会整段处理。</p></div>
       <div class="card"><h3>用什么语气</h3><p>按你正在用的应用自动选：Outlook 用「商务」，微信用「随意」，其余用「日常」。可在托盘菜单里改。</p></div>
       <div class="card"><h3>写出意图</h3><p>不逐字直译。粗糙的草稿会被整理成你真正想表达的意思，不会冒出 AI 腔和中式英语。</p></div>
       <div class="card"><h3>英文风格</h3><p>美式、英式或新加坡式拼写与用词，在设置主页一键切换。</p></div>
@@ -174,14 +181,14 @@
     <div class="providers">
       <span class="def">Cerebras（默认）</span><span>Anthropic</span><span>OpenRouter</span><span>OpenAI</span><span>Google Gemini</span><span>DeepSeek</span><span>Groq</span><span>SambaNova</span><span>硅基流动 SiliconFlow</span><span>Ollama（本地）</span><span>自定义接口</span>
     </div>
-    <p class="note">在 设置 → 高级 → 模型与接口 里切换；「获取列表」可拉取服务商当前可用的模型。</p>
+    <p class="note">在 设置 → 高级 → 模型与数据 里切换；「获取列表」可拉取服务商当前可用的模型。</p>
   </section>
 
   <section>
     <h2>快捷键</h2>
     <div class="rows">
       <div class="row"><span class="k"><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd></span><span class="v">翻译 / 润色当前输入框（可自定义）</span></div>
-      <div class="row"><span class="k">替换后 2.5 秒内再按一次</span><span class="v">撤销，恢复原文</span></div>
+      <div class="row"><span class="k">替换后再按一次</span><span class="v">重说 → 再按一次恢复原文</span></div>
       <div class="row"><span class="k">末尾打 <kbd>··</kbd></span><span class="v">后缀触发（可自定义或关闭）</span></div>
       <div class="row"><span class="k">弹窗里 <kbd>Enter</kbd> / <kbd>Esc</kbd></span><span class="v">替换 / 取消（仅在关闭静默替换时出现弹窗）</span></div>
     </div>
