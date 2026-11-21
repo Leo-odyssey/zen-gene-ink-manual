@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ink (译墨) — Product manual · ZenGene</title>
+<meta name="description" content="Ink: write Chinese in any text box, press one shortcut, and it turns into natural English right where you typed it.">
+<link rel="alternate" hreflang="zh-CN" href="https://leo-odyssey.github.io/zen-gene-ink-manual/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M227.9 122.8A100 100 0 1 1 181 43.2' fill='none' stroke='%23141414' stroke-width='36' stroke-linecap='round'/%3E%3Ccircle cx='206' cy='206' r='21' fill='%2356cfe1'/%3E%3C/svg%3E">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #fcfcfb; --surface: #ffffff; --hover: #f1f1ef;
+    --line: rgba(0,0,0,.07); --line-strong: rgba(0,0,0,.14);
+    --t1: #141414; --t2: #5c5c5c; --t3: #8a8a8a;
+    --brand: #56cfe1; --seal: #b8553f;
+  }
+  body {
+    background: var(--bg); color: var(--t1);
+    font-family: "Segoe UI", -apple-system, "Noto Sans SC", "Source Han Sans SC", "Microsoft YaHei UI", -apple-system, sans-serif;
+    font-size: 15px; line-height: 1.75; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  a { color: var(--t1); text-decoration: underline; text-underline-offset: 3px; }
+
+  header.top { padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .lockup { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+  .lockup svg { width: 18px; height: 18px; }
+  .lockup .p { color: var(--t3); font-size: 12px; letter-spacing: 1px; }
+  .lockup .n { font-weight: 600; font-size: 14px; }
+
+  header.top .wrap { display: flex; justify-content: space-between; align-items: center; }
+  .langs { font-size: 13px; color: var(--t3); }
+  .langs a { color: var(--t3); text-decoration: none; }
+  .langs a:hover { color: var(--t1); }
+  .langs b { color: var(--t1); font-weight: 500; }
+  .hero { padding: 72px 0 56px; }
+  .hero h1 { font-size: 40px; font-weight: 600; letter-spacing: -.5px; line-height: 1.2; }
+  .hero h1 span { color: var(--t3); font-weight: 400; }
+  .hero p.lead { margin-top: 14px; font-size: 18px; color: var(--t2); max-width: 520px; }
+  .hero .meta { margin-top: 22px; font-size: 12px; color: var(--t3); }
+
+  .demo { margin-top: 36px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--surface); padding: 22px 24px 26px; }
+  .demo .field { font-size: 15px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; }
+  .demo .field.before { color: var(--t2); }
+  .demo .arrow { text-align: center; color: var(--t3); font-size: 12px; margin: 10px 0; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; background: var(--t1); color: #f4f4f2; border-radius: 999px; padding: 7px 16px; font-size: 13px; margin-top: 16px; }
+  .pill svg { width: 15px; height: 15px; }
+  .pill .d { opacity: .5; }
+  .pill.err .sq { width: 7px; height: 7px; border-radius: 2px; background: var(--seal); }
+
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 20px; font-weight: 600; margin-bottom: 6px; }
+  section .sub { color: var(--t2); margin-bottom: 22px; }
+  .label { font-size: 11px; letter-spacing: 1.5px; color: var(--t3); text-transform: uppercase; margin-bottom: 8px; }
+
+  ol.steps { list-style: none; counter-reset: s; }
+  ol.steps li { counter-increment: s; position: relative; padding: 0 0 18px 40px; }
+  ol.steps li::before { content: counter(s); position: absolute; left: 0; top: 1px; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--line-strong); font-size: 12px; display: grid; place-items: center; color: var(--t2); }
+  ol.steps li b { font-weight: 600; }
+  ol.steps li p { color: var(--t2); font-size: 14px; }
+
+  .rows { border-top: 1px solid var(--line); }
+  .row { display: flex; justify-content: space-between; gap: 24px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .row .k { font-weight: 500; white-space: nowrap; }
+  .zh { color: var(--t3); font-weight: 400; }
+  .row .v { color: var(--t2); text-align: right; font-size: 14px; }
+
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .card { border: 1px solid var(--line-strong); border-radius: 10px; padding: 16px 18px; background: var(--surface); }
+  .card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .card p { color: var(--t2); font-size: 14px; }
+
+  kbd { font-family: inherit; font-size: 12px; border: 1px solid var(--line-strong); border-radius: 5px; padding: 1px 7px; color: var(--t2); background: var(--surface); white-space: nowrap; }
+  .note { margin-top: 18px; font-size: 13px; color: var(--t3); }
+  .providers { display: flex; flex-wrap: wrap; gap: 8px; }
+  .providers span { border: 1px solid var(--line-strong); border-radius: 999px; padding: 3px 12px; font-size: 13px; color: var(--t2); }
+  .providers span.def { border-color: var(--t1); color: var(--t1); font-weight: 500; }
+
+  footer { border-top: 1px solid var(--line); padding: 28px 0 48px; color: var(--t3); font-size: 12px; display: flex; justify-content: space-between; }
+  @media (max-width: 560px) {
+    .hero h1 { font-size: 30px; } .grid { grid-template-columns: 1fr; }
+    .row { flex-direction: column; gap: 2px; } .row .v { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+  <a class="lockup" href="https://zengene.me">
+    <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M227.9 122.8A100 100 0 1 1 181 43.2" fill="none" stroke="#141414" stroke-width="36" stroke-linecap="round"/><circle cx="206" cy="206" r="21" fill="#56cfe1"/></svg>
+    <span class="p">ZenGene</span><span class="n">Ink</span>
+  </a>
+  <span class="langs"><a href="../" hreflang="zh-CN" lang="zh-CN">中文</a> · <b>English</b></span>
+</div></header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <h1>Ink <span>译墨</span></h1>
+    <p class="lead">Write Chinese in any text box, press one shortcut, and it becomes natural English right where you typed it. No pop-ups, no copy and paste.</p>
+    <div class="meta">v2.1 · Windows desktop tool · Product manual · The app's menus are in Chinese; their names are shown below.</div>
+
+    <div class="demo">
+      <div class="field before" lang="zh-CN">我明天下午三点有空，可以一起讨论下这个方案吗？</div>
+      <div class="arrow">Press <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd></div>
+      <div class="field">I'm free tomorrow at 3pm — could we go over the proposal together?</div>
+      <div class="pill">
+        <svg viewBox="0 0 256 256" aria-hidden="true"><path d="M227.9 122.8A100 100 0 1 1 181 43.2" fill="none" stroke="#f4f4f2" stroke-width="36" stroke-linecap="round"/><circle cx="206" cy="206" r="21" fill="#56cfe1"/></svg>
+        Business<span class="d">· Replaced · Press again = rephrase</span>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h2>How it works</h2>
+    <p class="sub">One action from you. Everything else happens on its own.</p>
+    <ol class="steps">
+      <li><b>Type as usual</b><p>Write a Chinese draft, or English that doesn't quite sound right, in any text box: WeChat, Outlook, Slack, your browser.</p></li>
+      <li><b>Press the shortcut</b><p><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd>, or type the suffix at the end (default <kbd>··</kbd>). Select part of the text first to process only that part.</p></li>
+      <li><b>Replaced in place</b><p>Within seconds the text in the box becomes natural English, and a small pill at the edge of the screen tells you it's done.</p></li>
+      <li><b>Not happy? Press again</b><p>By default Ink only fixes mistakes and keeps your wording. For a bigger rewrite, press the shortcut again on the replaced text to get a rephrased version; a third press brings back your original. There's no time limit, as long as the box still holds the sentence Ink wrote.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>It decides for you</h2>
+    <p class="sub">No modes or tones to pick.</p>
+    <div class="grid">
+      <div class="card"><h3>Translate or polish</h3><p>Any Chinese gets translated into English. All-English text only gets its mistakes and awkward phrasing fixed, keeping your words and tone (contractions and lowercase stay as they are). Mixed Chinese and English is handled as one piece.</p></div>
+      <div class="card"><h3>Which tone</h3><p>Picked from the app you're in: Business in Outlook, Casual in WeChat, Everyday everywhere else. Change it from the tray menu.</p></div>
+      <div class="card"><h3>Writes what you mean</h3><p>Not word for word. A rough draft becomes what you actually meant to say, without AI-speak or Chinglish.</p></div>
+      <div class="card"><h3>English style</h3><p>American, British or Singaporean spelling and word choice, switched with one click on the Settings home page.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Gets to know you</h2>
+    <p class="sub">All under Settings → Advanced → Personalization <span class="zh" lang="zh-CN">设置 → 高级 → 个性化</span>, and all stored on your computer.</p>
+    <div class="rows">
+      <div class="row"><span class="k">Learn from my edits</span><span class="v">When you edit the English after a replacement, Ink notes it and turns it into rules for next time</span></div>
+      <div class="row"><span class="k">Personal style guide</span><span class="v">Write down preferences (e.g. “don't use reach out”), or generate one from your translation history</span></div>
+      <div class="row"><span class="k">Personal glossary</span><span class="v">Names, company names, fixed translations and abbreviations, kept consistent every time</span></div>
+      <div class="row"><span class="k">Context awareness</span><span class="v">Reads the visible conversation in web chats (WhatsApp Web, Outlook Web and more) as reference</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Settings</h2>
+    <p class="sub">Settings opens with just 6 rows. Changes apply at once; there is no Save button.</p>
+    <div class="label">Home</div>
+    <div class="rows">
+      <div class="row"><span class="k">Shortcut <span class="zh" lang="zh-CN">快捷键</span></span><span class="v">Click, then press the new combination; if another program already uses it, Ink tells you and switches back</span></div>
+      <div class="row"><span class="k">English style <span class="zh" lang="zh-CN">英文风格</span></span><span class="v">American / British / Singaporean</span></div>
+      <div class="row"><span class="k">Learn from my edits <span class="zh" lang="zh-CN">从我的修改中学习</span></span><span class="v">On/off, with a count of what it has learned</span></div>
+      <div class="row"><span class="k">Connection <span class="zh" lang="zh-CN">连接</span></span><span class="v">Your current provider; paste your API key here the first time</span></div>
+      <div class="row"><span class="k">Start with Windows <span class="zh" lang="zh-CN">开机自启</span></span><span class="v">On/off</span></div>
+      <div class="row"><span class="k">Advanced <span class="zh" lang="zh-CN">高级</span></span><span class="v">Interaction · Personalization · Models and data</span></div>
+    </div>
+    <div class="label" style="margin-top:28px">Advanced</div>
+    <div class="rows">
+      <div class="row"><span class="k">Interaction <span class="zh" lang="zh-CN">交互</span></span><span class="v">Silent replace (turn off to confirm in a pop-up first) · suffix trigger · pill position · context awareness</span></div>
+      <div class="row"><span class="k">Personalization <span class="zh" lang="zh-CN">个性化</span></span><span class="v">Personal style guide · personal glossary · learned rules</span></div>
+      <div class="row"><span class="k">Models and data <span class="zh" lang="zh-CN">模型与数据</span></span><span class="v">Provider and model · translation history and export · API usage · prompts (expert)</span></div>
+    </div>
+    <p class="note">The tray menu switches tone, English style and the suffix trigger, or pauses Ink. Left-click the tray icon for the menu; double-click it for Settings.</p>
+  </section>
+
+  <section>
+    <h2>Quick start</h2>
+    <p class="sub">Nothing to install. Ready in a minute.</p>
+    <ol class="steps">
+      <li><b>Run ZenGeneInk.exe</b><p>Ink is running when the ZenGene mark (an open ring with a cyan dot) appears in the tray.</p></li>
+      <li><b>Paste an API key</b><p>Settings opens on its own. No key? Get one free from <a href="https://cloud.cerebras.ai/" target="_blank" rel="noopener">Cerebras</a>, which includes a free daily allowance. Keys starting with <kbd>csk-</kbd>, <kbd>gsk_</kbd>, <kbd>sk-ant-</kbd>, <kbd>sk-or-</kbd> or <kbd>AIza</kbd> pick their provider automatically.</p></li>
+      <li><b>Try it</b><p>Write a Chinese sentence in any text box and press <kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd>.</p></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>AI providers</h2>
+    <p class="sub">The default is Cerebras <code>qwen-3.8-27b</code>: fast (usually about a second), steady quality, with a free allowance. You can switch to any of these.</p>
+    <div class="providers">
+      <span class="def">Cerebras (default)</span><span>Anthropic</span><span>OpenRouter</span><span>OpenAI</span><span>Google Gemini</span><span>DeepSeek</span><span>Groq</span><span>SambaNova</span><span>SiliconFlow</span><span>Ollama (local)</span><span>Custom endpoint</span>
+    </div>
+    <p class="note">Switch under Settings → Advanced → Models and data; “Fetch list” pulls the models your provider currently offers.</p>
+  </section>
+
+  <section>
+    <h2>Shortcuts</h2>
+    <div class="rows">
+      <div class="row"><span class="k"><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd></span><span class="v">Translate / polish the current text box (customizable)</span></div>
+      <div class="row"><span class="k">Press again after a replacement</span><span class="v">Rephrase → press once more to restore the original</span></div>
+      <div class="row"><span class="k">Type <kbd>··</kbd> at the end</span><span class="v">Suffix trigger (customizable, or turn it off)</span></div>
+      <div class="row"><span class="k"><kbd>Enter</kbd> / <kbd>Esc</kbd> in the pop-up</span><span class="v">Replace / cancel (the pop-up only appears with silent replace off)</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Privacy</h2>
+    <div class="rows">
+      <div class="row"><span class="k">API key</span><span class="v">Stored on your computer, encrypted by Windows (DPAPI)</span></div>
+      <div class="row"><span class="k">Translation history</span><span class="v">Can be turned off; when on, each entry is encrypted on your computer and can be exported or cleared in one click</span></div>
+      <div class="row"><span class="k">What goes to the AI</span><span class="v">Only the text you're processing, plus the visible conversation when context awareness is on</span></div>
+      <div class="row"><span class="k">Diagnostic log</span><span class="v">Only timings and success/failure counts, never any of your text</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>System requirements</h2>
+    <div class="rows">
+      <div class="row"><span class="k">Operating system</span><span class="v">Windows 10 / 11 (64-bit)</span></div>
+      <div class="row"><span class="k">Network</span><span class="v">Access to your chosen provider's API (not needed for local Ollama)</span></div>
+      <div class="row"><span class="k">Install</span><span class="v">None: a single exe, no admin rights needed</span></div>
+      <div class="row"><span class="k">New computer</span><span class="v">Copy ZenGeneInk.exe over and enter your key on first run</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <span>ZenGene · Simplicity at its core.</span>
+  <a href="https://zengene.me">zengene.me</a>
+</footer>
+
+</body>
+</html>
